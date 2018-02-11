@@ -3,19 +3,18 @@
 const Code = require('code');
 const Lab = require('lab');
 const Hoek = require('hoek');
-const fs = require('fs');
-const path = require('path');
-const wordReplace = require('../lib/wordReplace');
+const Fs = require('fs');
+const Path = require('path');
+const WordReplace = require('../lib/wordReplace');
 
 // Declare internals
 
 const internals = {
     fixtures: {
-        amazonHomepage: path.resolve(__dirname, 'fixtures', 'amazonHomepage.txt'),
-        compressionArticle: path.resolve(__dirname, 'fixtures', 'compressionArticle.txt')
+        amazonHomepage: Path.resolve(__dirname, 'fixtures', 'amazonHomepage.txt'),
+        compressionArticle: Path.resolve(__dirname, 'fixtures', 'compressionArticle.txt')
     }
-}
-
+};
 
 // Test shortcuts
 
@@ -29,9 +28,9 @@ describe('Word Replace', () => {
 
     it('shortens text', (done) => {
 
-        const originalData = fs.readFileSync(internals.fixtures.compressionArticle).toString();
+        const originalData = Fs.readFileSync(internals.fixtures.compressionArticle).toString();
 
-        const result = wordReplace.compress(Hoek.clone(originalData));
+        const result = WordReplace.compress(Hoek.clone(originalData));
         expect(result.compressed).to.exist();
         expect(result.map).to.exist();
 
@@ -41,11 +40,11 @@ describe('Word Replace', () => {
 
     it('decompresses text to original form with no lost data', (done) => {
 
-        const originalData = fs.readFileSync(internals.fixtures.compressionArticle).toString();
+        const originalData = Fs.readFileSync(internals.fixtures.compressionArticle).toString();
 
-        const compressed = wordReplace.compress(Hoek.clone(originalData));
+        const compressed = WordReplace.compress(Hoek.clone(originalData));
         expect(compressed.compressed.length).to.be.below(originalData.length);
-        const decompressed = wordReplace.decompress(compressed.compressed, compressed.map);
+        const decompressed = WordReplace.decompress(compressed.compressed, compressed.map);
 
         expect(originalData.length).to.equal(decompressed.length);
         expect(originalData).to.equal(decompressed);
