@@ -1,0 +1,27 @@
+{
+  "name": "node-compression",
+  "version": "1.0.0",
+  "description": "data compression functions in nodeJS",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/louisrowan/node-compression.git"
+  },
+  "keywords": [
+    "compression",
+    "huffman",
+    "lz77"
+  ],
+  "author": "Louis Rowan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/louisrowan/node-compression/issues"
+  },
+  "homepage": "https://github.com/louisrowan/node-compression#readme"
+}
